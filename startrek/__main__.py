@@ -12,16 +12,10 @@ def get():
     species = elastic.get(uid)
     species.print()
 
-def search():
+def search(querytype):
     key = input('Enter key: ')
     value = input('Enter value: ')
-    for species in elastic.search(key, value):
-        species.print()
-
-def searchPrefix():
-    key = input('Enter key: ')
-    value = input('Enter value: ')
-    for species in elastic.searchPrefix(key, value):
+    for species in elastic.search(querytype, key, value):
         species.print()
 
 while True:
@@ -35,8 +29,9 @@ while True:
     elif option == '1':
         get()
     elif option == '2':
-        search()
+        search('match')
     elif option == '3':
-        searchPrefix()
+        search('prefix')
     else:
         print('Invalid option')
+        

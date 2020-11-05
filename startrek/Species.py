@@ -12,13 +12,13 @@ class Species:
         self.homeworld = 'None'
         if data['homeworld'] != None:
             self.homeworld = data['homeworld']['name']
-        self.type = 'Unknown'
+        self.type = ''
         if data['humanoidSpecies']:
-            self.type = 'Humanoid'
-        elif data['reptilianSpecies']:
-            self.type = 'Reptilian'
-        elif data['extinctSpecies']:
-            self.Type = 'Extinct'
+            self.type += ' Humanoid'
+        if data['reptilianSpecies']:
+            self.type += ' Reptilian'
+        if data['extinctSpecies']:
+            self.Type += ' Extinct'
     
     def print(self):
         print(self.name, self.type, 'Homeworld:', self.homeworld)
