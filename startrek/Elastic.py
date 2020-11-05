@@ -15,5 +15,18 @@ class Elastic:
             species = Species()
         return species
 
-    def search(self):
-        return self.es.search(index='startrek')
+    def search(self, key, value):
+        query = { 'query': { 'match' : { key: value } } }
+        result = self.es.search(index='startrek', body=query)
+        species = []
+        for hit in result['hits']['hits']:
+            species.append(Species(hit['_source']))
+        return species
+
+    def searchPrefix(self, key, value):
+        query = { 'query': { 'prefix' : { key: value } } }
+        result = self.es.search(index='startrek', body=query)
+        species = []
+        for hit in result['hits']['hits']:
+            species.append(Species(hit['_source']))
+        return species

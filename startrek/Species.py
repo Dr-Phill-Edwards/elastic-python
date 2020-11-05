@@ -1,5 +1,12 @@
 class Species:
-    def __init__(self, data = {'uid': '', 'name': 'Unkown Species', 'homeworld': None, 'humanoidSpecies': False, 'reptilianSpecies': False}):
+    def __init__(self, data = {
+            'uid': '', 
+            'name': 'Unkown Species', 
+            'homeworld': None, 
+            'humanoidSpecies': False, 
+            'reptilianSpecies': False,
+            'extinctSpecies': False
+            }):
         self.id = data['uid']
         self.name = data['name']
         self.homeworld = 'None'
@@ -10,6 +17,8 @@ class Species:
             self.type = 'Humanoid'
         elif data['reptilianSpecies']:
             self.type = 'Reptilian'
+        elif data['extinctSpecies']:
+            self.Type = 'Extinct'
     
     def print(self):
         print(self.name, self.type, 'Homeworld:', self.homeworld)
